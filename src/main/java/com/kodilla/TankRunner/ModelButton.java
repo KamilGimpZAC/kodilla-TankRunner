@@ -13,9 +13,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class ModelButton extends Button {
-    private final String pathToFont = "file:src/main/resources/kenvector_future.ttf";
-    private final String pathToButton = "-fx-background-image: url('resources/green_button00.png')";
-    private final String pathToPressedButton = "-fx-background-image: url('resources/green_button13.png')";
+    private static final String pathToFont = "kenvector_future.ttf";
+    private static final String pathToButton = "-fx-background-image: url('green_button00.png')";
+    private static final String pathToPressedButton = "-fx-background-image: url('green_button13.png')";
 
 
 

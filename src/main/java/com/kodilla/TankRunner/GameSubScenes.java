@@ -7,8 +7,8 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 
 public class GameSubScenes extends SubScene {
-    private final String pathToFont = "file:src/main/resources/kenvector_future.ttf";
-    private final String pathToBackground = "file:src/main/resources/green_panel.png";
+    private final String pathToFont = "kenvector_future.ttf";
+    private final String pathToBackground = "green_panel.png";
     private boolean isHidden;
     public GameSubScenes() {
         super(new AnchorPane(), 600, 400);

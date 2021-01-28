@@ -32,6 +32,8 @@ public class View {
 
 
     List<ModelButton> menuButtons;
+    List<TankPicker> tankList;
+    private Tanks choosenTank;
 
     public View() {
         menuButtons = new ArrayList<>();
@@ -66,7 +68,49 @@ public class View {
         MyLabel mylabel = new MyLabel("CHOOSE YOUR TANK");
         mylabel.setLayoutX(110);
         mylabel.setLayoutY(25);
-        //play.getPane().getChildren().add(mylabel);
+        play.getPane().getChildren().add(mylabel);
+        play.getPane().getChildren().add(createTanksToChoose());
+        play.getPane().getChildren().add(createPlayButton());
+    }
+
+    private HBox createTanksToChoose(){
+        HBox hbox = new HBox();
+        hbox.setSpacing(30);
+        tankList = new ArrayList<>();
+        for(Tanks tanks: Tanks.values()){
+            TankPicker tankToPick = new TankPicker(tanks);
+            tankList.add(tankToPick);
+            hbox.getChildren().add(tankToPick);
+            tankToPick.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    for(TankPicker tank: tankList){
+                        tank.setCircle(false);
+                    }
+                    tankToPick.setCircle(true);
+                    choosenTank = tankToPick.getTank();
+                }
+            });
+        }
+        hbox.setLayoutX(130);
+        hbox.setLayoutY(100);
+        return hbox;
+    }
+
+    private ModelButton createPlayButton(){
+        ModelButton startButtton = new ModelButton("START");
+        startButtton.setLayoutX(200);
+        startButtton.setLayoutY(300);
+        startButtton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (choosenTank != null){
+                    Game game = new Game();
+                    game.createGame(stage,choosenTank);
+                }
+            }
+        });
+        return startButtton;
     }
 
     public Stage getStage() {
@@ -132,13 +176,13 @@ public class View {
     }
 
     private void setMenuBackground(){
-        Image backgroundImage = new Image("file:src/main/resources/backgroundColorGrass.png",1024,1024,false,true);
+        Image backgroundImage = new Image("backgroundColorGrass.png",1024,1024,false,true);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.REPEAT,BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,null);
         anchorPane.setBackground(new Background(background));
     }
 
     private void setLogo(){
-        ImageView logo = new ImageView("file:src/main/resources/logo.png");
+        ImageView logo = new ImageView("logo.png");
         logo.setLayoutX(255);
         logo.setLayoutY(50);
         logo.setOnMouseEntered(new EventHandler<MouseEvent>() {

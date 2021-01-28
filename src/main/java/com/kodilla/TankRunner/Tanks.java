@@ -1,9 +1,9 @@
 package com.kodilla.TankRunner;
 
 public enum Tanks {
-    GREEN("file:src/main/resources/tanks_tankGreen3.png"),
-    GREY("file:src/main/resources/tanks_tankGrey3.png"),
-    DESERT("file:src/main/resources/tanks_tankDesert3.png");
+    GREEN("tanks_tankGreen3.png"),
+    GREY("tanks_tankGrey3.png"),
+    DESERT("tanks_tankDesert3.png");
 
     private String tank;
 

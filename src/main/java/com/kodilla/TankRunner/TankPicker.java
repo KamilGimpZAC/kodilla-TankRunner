@@ -7,8 +7,8 @@ import javafx.scene.layout.VBox;
 
 public class TankPicker extends VBox {
     private ImageView tankImage;
-    private String pathToCircle = "file:src/main/resources/green_boxTick.png";
-    private String pathToCircleNotChosen = "file:src/main/resources/grey_circle.png";
+    private String pathToCircle = "green_boxTick.png";
+    private String pathToCircleNotChosen = "grey_circle.png";
     private ImageView circleImage = new ImageView(pathToCircleNotChosen);
     private Tanks tank;
     private boolean isCircleChosen;
