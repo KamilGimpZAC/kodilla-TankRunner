@@ -10,6 +10,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 public class Game {
@@ -29,7 +31,7 @@ public class Game {
     private static String minePressed = "tanks_minePressed.png";
 
     private ImageView[] imageMineOn;
-    private ImageView[] imageMinePressed;
+    //private ImageView[] imageMinePressed;
     Random randomPosition = new Random();
 
     private ImageView fuel;
@@ -39,9 +41,11 @@ public class Game {
     private int points;
     private final static String pathToFuel = "tanks_barrelGrey.png";
 
-    private final static int fuelRadius = 12;
-    private final static int mineRadius = 20;
+    private final static int fuelRadius = 20;
+    private final static int mineRadius = 16;
     private final static int tankRadius = 27;
+
+    private PrintWriter savePoints;
 
 
     public Game(){
@@ -219,6 +223,7 @@ public class Game {
         gamePane.getChildren().remove(playerLifes[playerLife]);
         playerLife--;
         if (playerLife < 0){
+            createSave();
             gameStage.close();
             gameTimer.stop();
             menuStage.show();
@@ -227,5 +232,14 @@ public class Game {
 
     private double distance(double x1, double x2, double y1, double y2){
         return Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2));
+    }
+
+    private void createSave(){
+        try {
+            savePoints = new PrintWriter("points.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File error: " + e);
+        }
+        savePoints.println("Points: " + points);
     }
 }

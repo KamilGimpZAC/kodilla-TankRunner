@@ -10,8 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 
 public class View {
@@ -30,6 +33,8 @@ public class View {
 
     private GameSubScenes sceneToHide = new GameSubScenes();
 
+    private File save;
+    private Scanner in;
 
     List<ModelButton> menuButtons;
     List<TankPicker> tankList;
@@ -57,10 +62,32 @@ public class View {
 
     private void iniSubScenes(){
         anchorPane.getChildren().add(rules);
-        anchorPane.getChildren().add(score);
+        addRulesLabel();
+        //addScoreLabel();
         anchorPane.getChildren().add(tankChooser);
         createTankPickerSubScene();
 
+    }
+
+    /*private void addScoreLabel(){
+        save = new File("points.txt");
+        try {
+            in = new Scanner(save);
+        } catch (FileNotFoundException e) {
+            System.out.println("File error: " +e);
+        }
+        RulesLabel scoreLabel = new RulesLabel(in.nextLine());
+        score.getPane().getChildren().add(scoreLabel);
+    }*/
+
+    private void addRulesLabel(){
+        RulesLabel rulesLabel = new RulesLabel("1.Move your tank up and down.\n" +
+                "2.Use keys W/S or UP/DOWN arrows.\n" +
+                "3.Avoid mines. \n" +
+                "4.You have 3 lifes.\n" +
+                "5.You will lose one when touching mine.\n" +
+                "6.Grab fuel for points.");
+        rules.getPane().getChildren().add(rulesLabel);
     }
 
     private void createTankPickerSubScene(){
