@@ -21,20 +21,11 @@ public class ModelButton extends Button {
 
     public ModelButton(String text){
         setText(text);
-        setButtonFont();
+        setFont(Font.loadFont(Thread.currentThread().getContextClassLoader().getResourceAsStream(pathToFont), 23));
         setPrefHeight(49);
         setPrefWidth(190);
         setStyle(pathToButton);
         buttonListener();
-    }
-
-    private void setButtonFont(){
-        try {
-            setFont(Font.loadFont(new FileInputStream(pathToFont),23));
-        }
-        catch (FileNotFoundException e){
-            setFont(Font.font("Tahoma",23));
-        }
     }
 
     private void setButtonStyle(){

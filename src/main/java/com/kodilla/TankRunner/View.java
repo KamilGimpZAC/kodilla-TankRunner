@@ -63,22 +63,23 @@ public class View {
     private void iniSubScenes(){
         anchorPane.getChildren().add(rules);
         addRulesLabel();
-        //addScoreLabel();
+        addScoreLabel();
         anchorPane.getChildren().add(tankChooser);
         createTankPickerSubScene();
 
     }
 
-    /*private void addScoreLabel(){
-        save = new File("points.txt");
+    private void addScoreLabel(){
+        save = new File("G:/Development/Projects/kodilla-TankRunner/src/main/resources/points.txt");
         try {
             in = new Scanner(save);
         } catch (FileNotFoundException e) {
             System.out.println("File error: " +e);
         }
-        RulesLabel scoreLabel = new RulesLabel(in.nextLine());
+        PointsLabel scoreLabel = new PointsLabel(in.nextLine());
+        anchorPane.getChildren().add(score);
         score.getPane().getChildren().add(scoreLabel);
-    }*/
+    }
 
     private void addRulesLabel(){
         RulesLabel rulesLabel = new RulesLabel("1.Move your tank up and down.\n" +

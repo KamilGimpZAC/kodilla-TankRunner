@@ -10,8 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Random;
 
 public class Game {
@@ -41,7 +40,7 @@ public class Game {
     private int points;
     private final static String pathToFuel = "tanks_barrelGrey.png";
 
-    private final static int fuelRadius = 20;
+    private final static int fuelRadius = 25;
     private final static int mineRadius = 16;
     private final static int tankRadius = 27;
 
@@ -236,10 +235,11 @@ public class Game {
 
     private void createSave(){
         try {
-            savePoints = new PrintWriter("points.txt");
+            savePoints = new PrintWriter("G:/Development/Projects/kodilla-TankRunner/src/main/resources/points.txt");
         } catch (FileNotFoundException e) {
             System.out.println("File error: " + e);
         }
-        savePoints.println("Points: " + points);
+        savePoints.write("Points: " + points);
+        savePoints.close();
     }
 }
