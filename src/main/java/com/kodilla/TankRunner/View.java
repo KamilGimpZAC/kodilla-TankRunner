@@ -27,14 +27,10 @@ public class View {
     private Stage stage;
 
     private GameSubScenes rules = new GameSubScenes();
-    private GameSubScenes score = new GameSubScenes();
     private GameSubScenes play = new GameSubScenes();
     private GameSubScenes tankChooser = new GameSubScenes();
 
     private GameSubScenes sceneToHide = new GameSubScenes();
-
-    private File save;
-    private Scanner in;
 
     List<ModelButton> menuButtons;
     List<TankPicker> tankList;
@@ -63,22 +59,8 @@ public class View {
     private void iniSubScenes(){
         anchorPane.getChildren().add(rules);
         addRulesLabel();
-        addScoreLabel();
         anchorPane.getChildren().add(tankChooser);
         createTankPickerSubScene();
-
-    }
-
-    private void addScoreLabel(){
-        save = new File("G:/Development/Projects/kodilla-TankRunner/src/main/resources/points.txt");
-        try {
-            in = new Scanner(save);
-        } catch (FileNotFoundException e) {
-            System.out.println("File error: " +e);
-        }
-        PointsLabel scoreLabel = new PointsLabel(in.nextLine());
-        anchorPane.getChildren().add(score);
-        score.getPane().getChildren().add(scoreLabel);
     }
 
     private void addRulesLabel(){
@@ -126,10 +108,10 @@ public class View {
     }
 
     private ModelButton createPlayButton(){
-        ModelButton startButtton = new ModelButton("START");
-        startButtton.setLayoutX(200);
-        startButtton.setLayoutY(300);
-        startButtton.setOnAction(new EventHandler<ActionEvent>() {
+        ModelButton startButton = new ModelButton("START");
+        startButton.setLayoutX(200);
+        startButton.setLayoutY(300);
+        startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 if (choosenTank != null){
@@ -138,7 +120,7 @@ public class View {
                 }
             }
         });
-        return startButtton;
+        return startButton;
     }
 
     public Stage getStage() {
@@ -154,7 +136,6 @@ public class View {
 
     private void createButtons(){
         createStartButton();
-        createScoreButton();
         createRulesButton();
         createExitButton();
     }
@@ -166,17 +147,6 @@ public class View {
             @Override
             public void handle(ActionEvent event) {
                 hideSubScene(play);
-            }
-        });
-    }
-
-    private void createScoreButton(){
-        ModelButton button2 = new ModelButton("SCORE");
-        addMenuButton(button2);
-        button2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                hideSubScene(score);
             }
         });
     }

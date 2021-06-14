@@ -27,10 +27,8 @@ public class Game {
     private AnimationTimer gameTimer;
 
     private static String mineOn = "tanks_mineOn.png";
-    private static String minePressed = "tanks_minePressed.png";
 
     private ImageView[] imageMineOn;
-    //private ImageView[] imageMinePressed;
     Random randomPosition = new Random();
 
     private ImageView fuel;
@@ -235,7 +233,7 @@ public class Game {
 
     private void createSave(){
         try {
-            savePoints = new PrintWriter("G:/Development/Projects/kodilla-TankRunner/src/main/resources/points.txt");
+            savePoints = new PrintWriter("points.txt");
         } catch (FileNotFoundException e) {
             System.out.println("File error: " + e);
         }
